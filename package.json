@@ -1,0 +1,10 @@
+{
+    "name": "howoldisminecraft",
+    "main": "app.js",
+    "dependencies": {
+        "ejs": "^2.5.5",
+        "express": "^4.6.1",
+        "moment": "^2.24.0",
+        "moment-duration-format": "^2.3.2"
+    }
+}
