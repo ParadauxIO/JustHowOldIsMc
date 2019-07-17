@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 
 function getTimeSince(version) {
     thatTime = releases[version].releaseTime;
-    timeDifferential = moment.duration(moment().diff(moment(thatTime), 'milliseconds'));
+    timeDifferential = moment.duration(moment().diff(moment(thatTime, "YYYY-MM-DD"), 'milliseconds'));
 
     return {
         years: timeDifferential.years(), 
@@ -56,8 +56,12 @@ app.get("/api/v1/:version", function(req, res) {
 
     const release = releases[version];
 
+    if (!release) {
+        res.json({"error": "bad request."})
+    } 
+
     releaseTime = releases[version].releaseTime
-    releaseDifferenceMS = timeDifferential = moment.duration(moment().diff(moment(releaseTime), 'milliseconds'));
+    releaseDifferenceMS = timeDifferential = moment.duration(moment().diff(moment(releaseTime, "YYYY-MM-DD"), 'milliseconds'));
     timeSince = {
         "years": releaseDifferenceMS.years(),
         "months": releaseDifferenceMS.months(),
@@ -78,12 +82,8 @@ app.get("/api/v1/:version", function(req, res) {
         determination
     }
 
-    if (!release) {
-        res.json({"error": "bad request."})
-    } else {
-        res.json(apiOutput); 
-    }
+    res.json(apiOutput); 
 
 });
 
-app.listen(1338)
+app.listen(1339)
