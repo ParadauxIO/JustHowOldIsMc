@@ -44,7 +44,6 @@ app.get("/:version", function(req, res) {
 });
 
 app.get("/api/v1/:version", function(req, res) {
-    console.log(req.path);
     res.json(releases[req.params.version]);
 });
 
