@@ -33,8 +33,15 @@ app.get("/:version", function(req, res) {
         })
     } else {
 
+        if (version == "1.14.3") {
+            versiontitle = "Here's to 1.14.4!"
+        } else {
+            versiontitle = "I think it's time for an upgrade..."
+        }
+
         timeSince = getTimeSince(version);
         res.render('pages/generic-update', {
+            versiontitle,
             version,
             years: timeSince.years,
             months: timeSince.months,
@@ -44,7 +51,39 @@ app.get("/:version", function(req, res) {
 });
 
 app.get("/api/v1/:version", function(req, res) {
-    res.json(releases[req.params.version]);
+
+    version = req.params.version || ""
+
+    const release = releases[version];
+
+    releaseTime = releases[version].releaseTime
+    releaseDifferenceMS = timeDifferential = moment.duration(moment().diff(moment(releaseTime), 'milliseconds'));
+    timeSince = {
+        "years": releaseDifferenceMS.years(),
+        "months": releaseDifferenceMS.months(),
+        "days": releaseDifferenceMS.days()
+    }
+
+    if (version == "1.14.3") {
+        determination = "Here's to 1.14.4!"
+    } else {
+        determination = "I think it's time for an upgrade..."
+    }
+
+    apiOutput = {
+        version,
+        releaseTime,
+        timeSince,
+        launcherJSON: releases[version].url,
+        determination
+    }
+
+    if (!release) {
+        res.json({"error": "bad request."})
+    } else {
+        res.json(apiOutput); 
+    }
+
 });
 
 app.listen(1338)
