@@ -33,8 +33,8 @@ app.get("/:version", function(req, res) {
         })
     } else {
 
-        if (version == "1.14.3") {
-            versiontitle = "Here's to 1.14.4!"
+        if (version == "1.14.4") {
+            versiontitle = "We're getting closer to 1.13 performance at least..."
         } else {
             versiontitle = "I think it's time for an upgrade..."
         }
@@ -49,6 +49,11 @@ app.get("/:version", function(req, res) {
         });
     }
 });
+
+app.get("/api/v1/releases/", function(req, res) {
+    res.json(releases); 
+});
+
 
 app.get("/api/v1/:version", function(req, res) {
 
@@ -68,8 +73,8 @@ app.get("/api/v1/:version", function(req, res) {
         "days": releaseDifferenceMS.days()
     }
 
-    if (version == "1.14.3") {
-        determination = "Here's to 1.14.4!"
+    if (version == "1.14.4") {
+        determination = "We're getting closer to 1.13 performance at least..."
     } else {
         determination = "I think it's time for an upgrade..."
     }

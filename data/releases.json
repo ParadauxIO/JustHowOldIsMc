@@ -1,4 +1,10 @@
 {
+
+    "1.14.4": {
+        "releaseTime": "2019-07-19",
+        "url": "https://launchermeta.mojang.com/v1/packages/132979c36455cc1e17e5f9cc767b4e13c6947033/1.14.4.json"
+    },
+
     "1.14.3": {
         "releaseTime": "2019-06-24",
         "url": "https://launchermeta.mojang.com/v1/packages/6d3cf70caee28b898a4ce36c2804ace5ded076d2/1.14.3.json"
