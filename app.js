@@ -22,6 +22,14 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
+app.get('/coming-soon', function(req, res) {
+    res.render('pages/coming-soon');
+});
+
+app.get('/maintenance', function(req, res) {
+    res.render('pages/maintenance');
+});
+
 app.get("/:version", function(req, res) {
 
     version = req.params.version || ""
@@ -91,4 +99,4 @@ app.get("/api/v1/:version", function(req, res) {
 
 });
 
-app.listen(1339)
+app.listen(1337)
