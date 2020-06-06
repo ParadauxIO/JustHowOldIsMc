@@ -41,11 +41,19 @@ app.get("/:version", function(req, res) {
         })
     } else {
 
-        if (version == "1.14.4") {
+        if (version === "1.16") {
+            versiontitle = "At least it won't bring many breaking Bukkit api changes?"
+            res.render('pages/notyetreleased');
+            return;
+        } else if (version === "1.15.2") {
+            versiontitle = "Bees? Seriously Mojang? ..."
+        } else if (version === "1.14.4") {
             versiontitle = "We're getting closer to 1.13 performance at least..."
         } else {
             versiontitle = "I think it's time for an upgrade..."
         }
+
+
 
         timeSince = getTimeSince(version);
         res.render('pages/generic-update', {
@@ -81,7 +89,11 @@ app.get("/api/v1/:version", function(req, res) {
         "days": releaseDifferenceMS.days()
     }
 
-    if (version == "1.14.4") {
+    if (version === "1.16") {
+        determination = "At least it won't bring many breaking Bukkit api changes?"
+    } else if (version === "1.15.2") {
+        determination = "Bees? Seriously Mojang? ..."
+    } else if (version === "1.14.4") {
         determination = "We're getting closer to 1.13 performance at least..."
     } else {
         determination = "I think it's time for an upgrade..."

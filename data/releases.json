@@ -1,5 +1,20 @@
 {
-
+    "1.16": {
+        "releaseTime": "TBA",
+        "url": "TBA"
+    },
+    "1.15.2": {
+        "releaseTime": "2020-01-21",
+        "url": "https://launchermeta.mojang.com/v1/packages/97e7f6c94e2f9841d128011d4d9192fabdc874d4/1.15.2.json"
+    },
+    "1.15.1": {
+        "releaseTime": "2019-12-17",
+        "url": "https://launchermeta.mojang.com/v1/packages/7a49ab344e4be19b5936ff7a35fe907a903fa02b/1.15.1.json"
+    },
+    "1.15": {
+        "releaseTime": "2019-12-10",
+        "url": "https://launchermeta.mojang.com/v1/packages/bca3fbbac940b5eee4b123ddee1e7e6d989d1038/1.15.json"
+    },
     "1.14.4": {
         "releaseTime": "2019-07-19",
         "url": "https://launchermeta.mojang.com/v1/packages/132979c36455cc1e17e5f9cc767b4e13c6947033/1.14.4.json"
