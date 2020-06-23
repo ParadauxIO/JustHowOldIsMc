@@ -41,18 +41,17 @@ app.get("/:version", function(req, res) {
         })
     } else {
 
-        if (version === "1.16") {
-            versiontitle = "At least it won't bring many breaking Bukkit api changes?"
-            res.render('pages/notyetreleased');
-            return;
-        } else if (version === "1.15.2") {
-            versiontitle = "Bees? Seriously Mojang? ..."
-        } else if (version === "1.14.4") {
-            versiontitle = "We're getting closer to 1.13 performance at least..."
+        if (version.startsWith("1.16")) {
+            versiontitle = "At this point I don't even care about the gameplay changes. Performant Services When?"
+            // res.render('pages/notyetreleased');
+            // return;
+        } else if (version.startsWith("1.15")) {
+            versiontitle = "Bees? Seriously Mojang? ... You know what? Fuck off."
+        } else if (version.startsWith("1.14")) {
+            versiontitle = "We were getting closer to 1.13 performance at least..."
         } else {
             versiontitle = "I think it's time for an upgrade..."
         }
-
 
 
         timeSince = getTimeSince(version);
