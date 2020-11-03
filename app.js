@@ -1,18 +1,23 @@
-var express = require('express');
-var moment = require('moment');
-var releases = require('./data/releases.json');
+const express = require('express');
+const partials = require('express-partials');
+const moment = require('moment');
+const releases = require('./data/releases.json');
 
-var app = express();
 
+let app = express();
+
+app.use(partials());
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
 
 function getTimeSince(version) {
     thatTime = releases[version].releaseTime;
     timeDifferential = moment.duration(moment().diff(moment(thatTime, "YYYY-MM-DD"), 'milliseconds'));
 
     return {
-        years: timeDifferential.years(), 
-        months: timeDifferential.months(), 
+        years: timeDifferential.years(),
+        months: timeDifferential.months(),
         days: timeDifferential.days()
     }
 
@@ -42,7 +47,7 @@ app.get("/:version", function(req, res) {
     } else {
 
         if (version.startsWith("1.16")) {
-            versiontitle = "At this point I don't even care about the gameplay changes. Performant Services When?"
+            versiontitle = "Performant Services When?"
             // res.render('pages/notyetreleased');
             // return;
         } else if (version.startsWith("1.15")) {
@@ -66,7 +71,7 @@ app.get("/:version", function(req, res) {
 });
 
 app.get("/api/v1/releases/", function(req, res) {
-    res.json(releases); 
+    res.json(releases);
 });
 
 
@@ -78,7 +83,7 @@ app.get("/api/v1/:version", function(req, res) {
 
     if (!release) {
         res.json({"error": "bad request."})
-    } 
+    }
 
     releaseTime = releases[version].releaseTime
     releaseDifferenceMS = timeDifferential = moment.duration(moment().diff(moment(releaseTime, "YYYY-MM-DD"), 'milliseconds'));
@@ -106,7 +111,7 @@ app.get("/api/v1/:version", function(req, res) {
         determination
     }
 
-    res.json(apiOutput); 
+    res.json(apiOutput);
 
 });
 
