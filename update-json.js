@@ -9,7 +9,7 @@ fetch(mojangreleasedata).then(res => res.json()).then(json => {
     return value.type == "release";
 	});
 
-	let restructuredReleaseData = new Object; 
+	let restructuredReleaseData = new Object;
 
 	for (let data of release_data) {
 	    restructuredReleaseData[data.id] = {
@@ -25,4 +25,3 @@ fetch(mojangreleasedata).then(res => res.json()).then(json => {
         };
     });
 });
-
