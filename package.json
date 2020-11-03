@@ -2,9 +2,10 @@
     "name": "howoldisminecraft",
     "main": "app.js",
     "dependencies": {
-        "ejs": "^2.5.5",
-        "express": "^4.6.1",
-        "moment": "^2.24.0",
-        "node-fetch": "^2.6.0"
+        "ejs": "^3.1.5",
+        "express": "^4.17.1",
+        "express-partials": "^0.3.0",
+        "moment": "^2.29.1",
+        "node-fetch": "^2.6.1"
     }
 }
