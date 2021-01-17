@@ -1,4 +1,8 @@
 {
+  "1.16.5": {
+    "releaseTime": "2021-01-15",
+    "url": "https://launchermeta.mojang.com/v1/packages/436877ffaef948954053e1a78a366b8b7c204a91/1.16.5.json"
+  },
   "1.16.4": {
     "releaseTime": "2020-11-02",
     "url": "https://launchermeta.mojang.com/v1/packages/e54eda49b4a3b6dc407b952e494d0c32da422693/1.16.4.json"

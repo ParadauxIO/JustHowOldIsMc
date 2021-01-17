@@ -3,17 +3,15 @@ const partials = require('express-partials');
 const moment = require('moment');
 const releases = require('./data/releases.json');
 
-
 let app = express();
 
 app.use(partials());
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-
 function getTimeSince(version) {
-    thatTime = releases[version].releaseTime;
-    timeDifferential = moment.duration(moment().diff(moment(thatTime, "YYYY-MM-DD"), 'milliseconds'));
+    let thatTime = releases[version].releaseTime;
+    let timeDifferential = moment.duration(moment().diff(moment(thatTime, "YYYY-MM-DD"), 'milliseconds'));
 
     return {
         years: timeDifferential.years(),
@@ -37,9 +35,10 @@ app.get('/maintenance', function(req, res) {
 
 app.get("/:version", function(req, res) {
 
-    version = req.params.version || ""
+    let version = req.params.version || ""
 
     const release = releases[version];
+    let versiontitle;
     if (!release) {
         res.json({
             "error": "bad request."
@@ -77,7 +76,7 @@ app.get("/api/v1/releases/", function(req, res) {
 
 app.get("/api/v1/:version", function(req, res) {
 
-    version = req.params.version || ""
+    let version = req.params.version || ""
 
     const release = releases[version];
 
@@ -85,25 +84,27 @@ app.get("/api/v1/:version", function(req, res) {
         res.json({"error": "bad request."})
     }
 
-    releaseTime = releases[version].releaseTime
-    releaseDifferenceMS = timeDifferential = moment.duration(moment().diff(moment(releaseTime, "YYYY-MM-DD"), 'milliseconds'));
-    timeSince = {
+    let releaseTime = releases[version].releaseTime
+    let releaseDifferenceMS = moment.duration(moment().diff(moment(releaseTime, "YYYY-MM-DD"), 'milliseconds'));
+    let timeSince = {
         "years": releaseDifferenceMS.years(),
         "months": releaseDifferenceMS.months(),
         "days": releaseDifferenceMS.days()
     }
 
-    if (version === "1.16") {
+    let determination;
+
+    if (version.startsWith("1.16")) {
         determination = "At least it won't bring many breaking Bukkit api changes?"
-    } else if (version === "1.15.2") {
+    } else if (version.startsWith("1.15")) {
         determination = "Bees? Seriously Mojang? ..."
-    } else if (version === "1.14.4") {
+    } else if (version.startsWith("1.14")) {
         determination = "We're getting closer to 1.13 performance at least..."
     } else {
-        determination = "I think it's time for an upgrade..."
+        determination = "I think you're overdue an upgrade..."
     }
 
-    apiOutput = {
+    let apiOutput = {
         version,
         releaseTime,
         timeSince,
